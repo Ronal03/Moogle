@@ -1,0 +1,40 @@
+
+\section{Clase Coseno}
+\begin{frame}
+    \frametitle{Coseno}
+    \textbf{Metodos}
+
+    \begin{itemize}
+        \item \underline{Similitud} que devuelve un valor de tipo \textit{double} que representa la similitud
+        de 2 vectores que recibe como parámetros aplicando la fórmula del
+        producto punto y calculando las magnitudes de cada uno, mientras
+        mayor sea el número más semejantes son los vectores.
+
+        \item \underline{WordsInDoc} que recibe una lista de palabras a comparar con el
+        contenido de un documento y devuelve una nueva lista con las palabras
+        de la lista del parámetro que están en él.
+    
+        \item \underline{Positions} recibe esas palabras que coincidieron y la lista de todas las
+        palabras en total y devuelve una lista nueva con las posiciones de esas
+        palabras en la lista de todas las palabras.
+    \end{itemize}
+\end{frame}
+    
+\begin{frame}
+    \frametitle{Coseno}
+    \begin{itemize}
+        \item \underline{TFIDFWordsQueryInDoc} que recibe la matriz con los TFIDF
+        la lista
+        de las posiciones y el número del documento que contenía a esas
+        palabras y devuelve una lista de los TFIDF de esas palabras en ese
+        documento
+        \item \underline{Snippet} que recibe a la palabra con mayor TFIDF y al documento con
+        el contenido original, el método crea una lista separando las cadenas
+        del texto por un espacio, y aplico el método \underline{LevenshteinDistance} de la
+        clase \textbf{Suggestion} entre cada porción del texto y esa palabra, la distancia
+        menor será la porción más parecida a la palabra, a esa porción le sumo
+        una cantidad a la derecha y a la izquierda y esa cadena la retorna como
+        el valor del snippet.
+    \end{itemize}
+       
+\end{frame}

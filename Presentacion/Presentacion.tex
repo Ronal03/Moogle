@@ -1,0 +1,33 @@
+\documentclass[10pt]{beamer}
+\usepackage{graphicx}
+\usetheme{Berkeley}
+\AtBeginSection[]{
+    \begin{frame}
+        \frametitle{Tabla de contenidos}
+        \begin{columns}
+        \begin{column}{.5\textwidth}
+            \tableofcontents[sections={1-3},currentsection]
+        \end{column}
+        \begin{column}{.5\textwidth}
+            \tableofcontents[sections={4-6},currentsection]
+        \end{column}
+        \end{columns}
+    \end{frame}
+}
+
+\title[Moogle]{Proyecto Moogle}
+\author{Ronal Prieto Vazquez   C-112}
+\institute[UH]{Facultad de Matematica y Computacion \\Universidad de La Habana}
+\date{\today}
+\logo{\includegraphics[height=1cm]{Logo de Matcom.png}}
+
+\begin{document}
+\frame{\titlepage}
+\include{Section 1}
+\include{Section 2}
+\include{Section 3}
+\include{Section 4}
+\include{Section 5}
+\include{Section 6}
+    
+\end{document}

@@ -1,0 +1,157 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\titleformat{\section}[display]{\bfseries\Large\itshape}{Section No. \thesection}
+{0.5ex}
+{ \vspace{1ex}
+\centering}[\vspace{1ex}]
+
+
+\title{Proyecto Moogle}
+\author{Ronal Prieto Vazques   C-112}
+\date{\today}
+\begin{document}
+\begin{figure}[t]
+    \hspace{13cm}
+\includegraphics[width=2cm,height=2cm]{Logo de Matcom.png}
+\end{figure}
+\maketitle
+
+\tableofcontents
+\begin{figure}[t]
+    
+        \hspace{13cm}
+    \includegraphics[width=2cm,height=2cm]{Logo de Matcom.png}
+\end{figure}
+\newpage
+\section{Clase Dict}
+\large\textbf{Metodos}
+
+\begin{itemize}
+    \item \underline{ConvertToDict}: acepta como parámetro una lista de \textit{strings }y devuelve
+    un diccionario donde la clave de cada elemento es una palabra de la
+    lista y cada valor lo inicio con 0.
+    \item Dos metodos \underline{SortDictionary} uno con claves de tipo \textit{string} y otro con
+    claves de tipo \textit{int}, cada método ordena los elementos del diccionario
+    según los valores que son de tipo \textit{double}.
+    \item \underline{WordsInVocabulary} que acepta una lista de \textit{strings} y un diccionario, no
+    devuelve nada, sino modifica el diccionario y las palabras que coincidan
+    con las de la lista toman valores de 1.
+\end{itemize}
+\section{Clase Coseno}
+\large\textbf{Metodos}
+\begin{itemize}
+    \item \underline{Similitud} que devuelve un valor de tipo \textit{double} que representa la similitud
+    de 2 vectores que recibe como parámetros aplicando la fórmula del
+    producto punto y calculando las magnitudes de cada uno, mientras
+    mayor sea el número más semejantes son los vectores.
+    \begin{figure}[t]
+        \hspace{13cm}
+    \includegraphics[width=2cm,height=2cm]{Logo de Matcom.png}
+    \end{figure}
+    \item \underline{WordsInDoc} que recibe una lista de palabras a comparar con el
+    contenido de un documento y devuelve una nueva lista con las palabras
+    de la lista del parámetro que están en él.
+    \item \underline{Positions} recibe esas palabras que coincidieron y la lista de todas las
+    palabras en total y devuelve una lista nueva con las posiciones de esas
+    palabras en la lista de todas las palabras.
+    \item \underline{TFIDFWordsQueryInDoc} que recibe la matriz con los TFIDF
+    la lista
+    de las posiciones y el número del documento que contenía a esas
+    palabras y devuelve una lista de los TFIDF de esas palabras en ese
+    documento
+    \item \underline{Snippet} que recibe a la palabra con mayor TFIDF y al documento con
+    el contenido original, el método crea una lista separando las cadenas
+    del texto por un espacio, y aplico el método \underline{LevenshteinDistance} de la
+    clase \textbf{Suggestion} entre cada porción del texto y esa palabra, la distancia
+    menor será la porción más parecida a la palabra, a esa porción le sumo
+    una cantidad a la derecha y a la izquierda y esa cadena la retorna como
+    el valor del snippet.
+\end{itemize}
+\newpage
+\begin{figure}[t]
+    \hspace{13cm}
+\includegraphics[width=2cm,height=2cm]{Logo de Matcom.png}
+\end{figure}
+\section{Clase TFIDF}
+\large\textbf{Metodos}
+\begin{itemize}
+  \item \underline{TF} que devuelve una matriz ,con los TF de todas las palabras en cada
+  documento
+  \item \underline{TFIDF} que devuelve una matriz con los valores TFIDF de todas las
+  palabras en todos los documentos.
+\end{itemize}
+\section{Clase Suggestion}
+\large\textbf{Metodos}
+\begin{itemize}
+    \item \underline{LevenshteinDistance} explicado anteriormente
+    \item \underline{ConvertDocArray} que me lleva el contenido de un documento a un
+    \textit{arrray } de \textit{string}.
+\end{itemize}
+\section{Clase Matrix}
+En el constructor acepta una matriz de tipo \textit{double} y tiene una
+propiedad \textbf{Row} con la parte \textit{set} privada que devuelve la matriz.Contiene
+9 métodos cada uno realiza la operación algebraica que indica el nombre. \\ \\
+\large\textbf{Metodos}
+\begin{itemize}
+    \item \underline{Suma} suma 2 matrices
+    \item \underline{Producto} multiplica 2 matrices
+    \item \underline{Traspuesta} calcula la traspuesta de una matriz
+    \item \underline{Deter} Calcula el determinante de orden n de una matriz
+    \item \underline{MatrizXVector} multiplica una matriz por un vector
+    \item \underline{MatrizXEscalar} multiplica una matriz por un escalar
+    \item \underline{VectorSuma} suma 2 vectores
+    \item \underline{VectorMult} multiplica 2 vectores
+    \item \underline{VectorXescalar} multiplica un vector por un escalar
+\end{itemize}
+\begin{figure}[t]
+    \hspace{13cm}
+\includegraphics[width=2cm,height=2cm]{Logo de Matcom.png}
+\end{figure}
+\section{Funcionamiento}
+En el método \underline{Query} de la clase \textbf{Moogle} lo primero que hice es llevar el
+query a una lista en minúsculas y quitarle todos los caracteres que no
+coincidan con letras o números. Después busco cada documento de la
+carpeta \emph{Content} y voy creando las listas con el contenido de cada
+documento, una con el contenido original y otra con el contenido
+modificado después de quitarles los caracteres que no sean números y
+letras, además de la lista de los títulos sin extensiones. Si alguno de los
+documentos esta vacío se elimina ese documento de cada lista. Después
+creo la lista de todas las palabras q hay y elimino las que sean iguales y
+creo las matrices de los TFIDF de cada una .Creo el diccionario \emph{Vocabulary}
+con todas las palabras y se lo paso como parámetro al método
+\underline{WordsInVocabulary} con las palabras del query. Tomo los valores del
+diccionario y creo una lista con ellos, y voy aplicando el método \underline{Similitud}
+con cada columna de la matriz TFIDF y cada valor se lo agrego a la lista
+de \emph{Scores}. Si todos los valores de la lista son 0, es porque todas las
+palabras aparecen en todos los documentos y en ese caso cálculo la
+similitud con cada columna de la matriz TF para quedarme con el
+documento de mayor TF. Después voy agregando cada \emph{Score} distinto de
+0 con el título correspondiente a un diccionario \emph{ScoresTitle} y eso mismo
+hago con el diccionario \emph{ScoreDocs} que contiene como clave los números
+de orden de los documentos. Le aplico el método \underline{SortDictionary} a cada
+uno y la lista de los títulos y los scores las modifico con la lista de los títulos
+y scores de los diccionarios en orden invertido. Creo una lista invertida
+\emph{DocNumbers} también con los números de los documentos. Con un ciclo
+\emph{for} recorro todos los documentos que coincidan con la lista \emph{DocNumbers} y
+en cada uno busco la palabra de mayor TFIDF, calculo el
+snippet y lo agrego a una lista de \emph{Snippet}. Creo un \emph{array }item de tipo
+\emph{SearchItem} con cada uno de los títulos,snippets y scores
+correspondientes.\\
+\begin{figure}[t]
+    \hspace{13cm}
+\includegraphics[width=2cm,height=2cm]{Logo de Matcom.png}
+\end{figure}
+Para buscar la sugerencia creo un \emph{array} con el query y
+un \emph{array} tester de igual longitud para recorrer cada documento; declaro una
+variable de apoyo con valor 5.Llevo cada documento a un \emph{array} y con el
+tester convertido a \emph{string} texte voy a compararlo con el query por el método
+\underline{LevenshteinDistance}, me quedo con el \emph{string} mas similar al query, y si no
+encuentra una similitud $<=$ 5,la sugerencia será una cadena vacía. Por último le paso el \emph{array} ítem y la sugerencia como parámetros al objeto de
+tipo \emph{SearchResult} que será devuelto.
+\begin{figure}[b]
+    \hspace{13cm}
+    \includegraphics[width=2cm,height=2cm]{Logo de Matcom.png}
+\end{figure}
+
+\end{document}
